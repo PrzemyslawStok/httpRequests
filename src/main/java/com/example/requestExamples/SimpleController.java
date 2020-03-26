@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class SimpleController {
+
+    Integer[][] table = {{1,2,3,4},{1,2,3,4},{1,2,3,4},{1,2,3,4}};
+
     @GetMapping("/")
     @ResponseBody
     String getInfo(){
@@ -25,4 +28,16 @@ public class SimpleController {
 
         return f0.toString();
     }
+    @RequestMapping("tablica/{i}/{j}")
+    @ResponseBody
+    String getTableElement(@PathVariable Integer i,@PathVariable Integer j){
+        return "tablica["+i+", "+j+"]="+table[i][j];
+    }
+
+    @RequestMapping("tablica")
+    @ResponseBody
+    Integer[][] getTable(){
+        return table;
+    }
+
 }
